@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
 
@@ -128,9 +129,11 @@ class _Slide extends StatelessWidget {
                   style: textStyles.bodyMedium
                       ?.copyWith(color: Colors.yellow.shade800)),
               const Spacer(),
+              Text(HumanFormats.number(movie.popularity),
+                  style: textStyles.bodySmall),
             ],
           ),
-        )
+        ),
       ]),
     );
   }
