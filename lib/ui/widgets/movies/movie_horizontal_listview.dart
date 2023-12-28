@@ -120,10 +120,12 @@ class _Slide extends StatelessWidget {
               width: 150,
               loadingBuilder: (context, child, loadingProgress) {
                 if (loadingProgress != null) {
-                  return const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                      ),
                     ),
                   );
                 }
