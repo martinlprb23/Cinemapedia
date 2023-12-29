@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../domain/entities/movie.dart';
-import '../../providers/movies/movie_info_provider.dart';
+import '../../providers/providers.dart';
 
 class MovieScreen extends ConsumerStatefulWidget {
   static const String name = 'movie_screen';
@@ -21,6 +21,7 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
   void initState() {
     super.initState();
     ref.read(movieInfoProvider.notifier).loadMovie(widget.movieId);
+    ref.read(actorsByMovieProvider.notifier).loadActors(widget.movieId);
   }
 
   @override
@@ -61,7 +62,7 @@ class _MovieDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(16),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -74,11 +75,11 @@ class _MovieDetails extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(width: 10),
+              const SizedBox(width: 16),
 
               // Descripción
               SizedBox(
-                width: (size.width - 40) * 0.7,
+                width: (size.width - 40) * 0.6,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -93,11 +94,11 @@ class _MovieDetails extends StatelessWidget {
 
         // Generos de la película
         Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Wrap(
             children: [
               ...movie.genreIds.map((gender) => Container(
-                    margin: const EdgeInsets.only(right: 10),
+                    margin: const EdgeInsets.only(right: 8),
                     child: Chip(
                       label: Text(gender),
                       shape: RoundedRectangleBorder(
@@ -108,9 +109,67 @@ class _MovieDetails extends StatelessWidget {
           ),
         ),
 
+        _ActorsByMovie(movieId: movie.id.toString()),
         const SizedBox(height: 50),
       ],
     );
+  }
+}
+
+class _ActorsByMovie extends ConsumerWidget {
+  final String movieId;
+
+  const _ActorsByMovie({required this.movieId});
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final actorsByMovie = ref.watch(actorsByMovieProvider);
+
+    if (actorsByMovie[movieId] == null) {
+      return Center(
+          child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              child: const LinearProgressIndicator()));
+    }
+
+    final actors = actorsByMovie[movieId]!;
+
+    return SizedBox(
+        height: 300,
+        child: ListView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          scrollDirection: Axis.horizontal,
+          itemCount: actors.length,
+          itemBuilder: (context, index) {
+            final actor = actors[index];
+            return Container(
+                padding: const EdgeInsets.all(8),
+                width: 150,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //Photo
+                      FadeInRight(
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.network(
+                              actor.image,
+                              height: 180,
+                              width: 150,
+                              fit: BoxFit.cover,
+                            )),
+                      ),
+                      //Name
+                      const SizedBox(height: 4),
+                      Text(actor.name, maxLines: 2),
+                      Text(actor.character ?? '',
+                          maxLines: 2,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis)),
+                    ]));
+          },
+        ));
   }
 }
 
