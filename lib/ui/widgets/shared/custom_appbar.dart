@@ -2,6 +2,9 @@ import 'package:cinemapedia/ui/delegates/search_movie_delegate.dart';
 import 'package:cinemapedia/ui/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../domain/entities/movie.dart';
 
 class CustomAppBar extends ConsumerWidget {
   const CustomAppBar({super.key});
@@ -26,10 +29,13 @@ class CustomAppBar extends ConsumerWidget {
                 IconButton(
                     onPressed: () {
                       final movieRepo = ref.read(movieRepositoryProvider);
-                      showSearch(
-                          context: context,
-                          delegate: SearchMovieDelegate(
-                              searchMovies: movieRepo.searchMovies));
+                      showSearch<Movie?>(
+                              context: context,
+                              delegate: SearchMovieDelegate(
+                                  searchMovies: movieRepo.searchMovies))
+                          .then((movie) {
+                        if (movie != null) context.push('/movies/${movie.id}');
+                      });
                     },
                     icon: const Icon(Icons.search))
               ],
