@@ -4,3 +4,5 @@ export 'package:cinemapedia/ui/widgets/shared/custom_navbar.dart';
 export 'package:cinemapedia/ui/widgets/movies/movie_horizontal_listview.dart';
 export 'package:cinemapedia/ui/widgets/movies/movie_masonry.dart';
 export 'package:cinemapedia/ui/widgets/movies/movie_porter_link.dart';
+export 'package:cinemapedia/ui/widgets/movies/movie_rating.dart';
+export 'package:cinemapedia/ui/widgets/videos/videos_from_movie.dart';
