@@ -61,13 +61,14 @@ class HomeViewState extends ConsumerState<HomeView> {
                 loadNextPage: () =>
                     ref.read(upcomingMoviesProvider.notifier).loadNextPage(),
               ),
+              /* It will render on the navigation bar button.  
               MovieHorizontalListview(
                 movies: popularMovies,
                 title: 'Popular',
                 //subtitle: 'This month',
                 loadNextPage: () =>
                     ref.read(popularMoviesProvider.notifier).loadNextPage(),
-              ),
+              ),*/
               MovieHorizontalListview(
                 movies: topRatedMovies,
                 title: 'Best rated',
