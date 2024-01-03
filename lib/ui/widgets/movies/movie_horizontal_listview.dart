@@ -78,20 +78,23 @@ class _Title extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(top: 16),
       margin: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(children: [
-        if (title != null)
-          Text(
-            title!,
-            style: const TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
-          ),
-        const Spacer(flex: 1),
-        if (subtitle != null)
-          FilledButton.tonal(
-            onPressed: () {},
-            style: const ButtonStyle(visualDensity: VisualDensity.compact),
-            child: Text(subtitle!),
-          ),
-      ]),
+      child: Container(
+        padding: const EdgeInsets.only(bottom: 8),
+        child: Row(children: [
+          if (title != null)
+            Text(
+              title!,
+              style: const TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+            ),
+          const Spacer(flex: 1),
+          if (subtitle != null)
+            FilledButton.tonal(
+              onPressed: () {},
+              style: const ButtonStyle(visualDensity: VisualDensity.compact),
+              child: Text(subtitle!),
+            ),
+        ]),
+      ),
     );
   }
 }
