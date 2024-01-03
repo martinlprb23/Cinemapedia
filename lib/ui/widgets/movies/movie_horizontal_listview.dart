@@ -75,8 +75,6 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleStyle = Theme.of(context).textTheme.titleLarge;
-
     return Container(
       padding: const EdgeInsets.only(top: 16),
       margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -84,7 +82,7 @@ class _Title extends StatelessWidget {
         if (title != null)
           Text(
             title!,
-            style: titleStyle,
+            style: const TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
           ),
         const Spacer(flex: 1),
         if (subtitle != null)
