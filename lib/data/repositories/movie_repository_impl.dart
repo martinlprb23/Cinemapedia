@@ -40,13 +40,11 @@ class MovieRepoImpl extends MoviesRepository {
 
   @override
   Future<List<Movie>> getSimilarMovies(int movieId) {
-    // TODO: implement getSimilarMovies
-    throw UnimplementedError();
+    return datasource.getSimilarMovies(movieId);
   }
 
   @override
   Future<List<Video>> getYoutubeVideosById(int movieId) {
-    // TODO: implement getYoutubeVideosById
-    throw UnimplementedError();
+    return datasource.getYoutubeVideosById(movieId);
   }
 }
