@@ -35,7 +35,7 @@ class FavoriteViewState extends ConsumerState<FavoriteView> {
     final favoriteMovies = ref.watch(favoriteMoviesProvider).values.toList();
 
     return Scaffold(
-        //appBar: AppBar(title: const Text('Favorites')),
+        appBar: AppBar(title: const Text('Favorites')),
         body: MovieMasonry(movies: favoriteMovies, loadNextPage: loadNextPage));
   }
 }
