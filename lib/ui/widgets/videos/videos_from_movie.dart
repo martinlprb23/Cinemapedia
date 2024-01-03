@@ -92,6 +92,7 @@ class _YTVideoPlayerState extends State<_YTVideoPlayer> {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(children: [
         Text(widget.name),
+        const SizedBox(height: 8),
         YoutubePlayer(controller: _controller)
       ]),
     );
