@@ -20,8 +20,9 @@ class SotrageMoviesNotifier extends StateNotifier<Map<int, Movie>> {
   final LocalStorageRepository localStorageRepository;
   SotrageMoviesNotifier({required this.localStorageRepository}) : super({});
 
-  Future<void> loadNextPage() async {
-    final movies = await localStorageRepository.loadMovies(offset: page * 10);
+  Future<List<Movie>> loadNextPage() async {
+    final movies =
+        await localStorageRepository.loadMovies(offset: page * 10, limit: 20);
     page++;
 
     final tempMoviesMap = <int, Movie>{};
@@ -30,5 +31,6 @@ class SotrageMoviesNotifier extends StateNotifier<Map<int, Movie>> {
     }
 
     state = {...state, ...tempMoviesMap};
+    return movies;
   }
 }
