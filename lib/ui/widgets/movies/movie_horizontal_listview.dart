@@ -109,36 +109,21 @@ class _Slide extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        //IMAGE
+        //* Imagen
         SizedBox(
           width: 150,
-          height: 200,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Image.network(
-              movie.posterPath,
-              fit: BoxFit.cover,
-              width: 150,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress != null) {
-                  return const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                      ),
-                    ),
-                  );
-                }
-                return GestureDetector(
-                    onTap: () => context.push('/home/0/movies/${movie.id}'),
-                    child: FadeIn(child: child));
-              },
+            child: GestureDetector(
+              onTap: () => context.push('/home/0/movies/${movie.id}'),
+              child: FadeInImage(
+                  height: 220,
+                  fit: BoxFit.cover,
+                  placeholder:
+                      const AssetImage('assets/loaders/bottle-loader.gif'),
+                  image: NetworkImage(movie.posterPath)),
             ),
           ),
-        ),
-        const SizedBox(
-          height: 8,
         ),
 
         //* Title
