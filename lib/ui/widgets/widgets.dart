@@ -7,3 +7,4 @@ export 'package:cinemapedia/ui/widgets/movies/movie_porter_link.dart';
 export 'package:cinemapedia/ui/widgets/movies/movie_rating.dart';
 export 'package:cinemapedia/ui/widgets/videos/videos_from_movie.dart';
 export 'package:cinemapedia/ui/widgets/actors/actors_by_movie.dart';
+export 'package:cinemapedia/ui/widgets/movies/similar_movies.dart';
