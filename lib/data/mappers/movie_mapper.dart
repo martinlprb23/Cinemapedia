@@ -17,7 +17,7 @@ class MovieMapper {
       popularity: movieDB.popularity,
       posterPath: movieDB.posterPath != ''
           ? 'https://image.tmdb.org/t/p/w500/${movieDB.posterPath}'
-          : 'no-poster',
+          : 'https://media.geeksforgeeks.org/wp-content/uploads/20230802153215/Error-404.png',
       releaseDate:
           movieDB.releaseDate != null ? movieDB.releaseDate! : DateTime.now(),
       title: movieDB.title,
