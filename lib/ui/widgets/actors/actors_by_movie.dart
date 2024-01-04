@@ -55,7 +55,7 @@ class ActorsByMovie extends ConsumerWidget {
 
                 // Nombre
                 const SizedBox(
-                  height: 5,
+                  height: 8,
                 ),
 
                 Text(actor.name, maxLines: 2),
