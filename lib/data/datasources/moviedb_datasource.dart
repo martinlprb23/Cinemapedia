@@ -7,7 +7,7 @@ import 'package:cinemapedia/domain/entities/entities.dart';
 import 'package:dio/dio.dart';
 
 class MovieDBDatasource extends MoviesDatasource {
-  final dio = Dio(BaseOptions(baseUrl: Environment.BASE_URL, queryParameters: {
+  var dio = Dio(BaseOptions(baseUrl: Environment.BASE_URL, queryParameters: {
     'api_key': Environment.MOVIEDB_KEY,
     'language': 'es-MX'
   }));
