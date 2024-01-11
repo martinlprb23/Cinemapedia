@@ -6,7 +6,7 @@ import 'package:cinemapedia/domain/entities/actor.dart';
 import 'package:dio/dio.dart';
 
 class ActorMovieDbDatasource extends ActorsDataSource {
-  final dio = Dio(BaseOptions(baseUrl: Environment.BASE_URL, queryParameters: {
+  var dio = Dio(BaseOptions(baseUrl: Environment.BASE_URL, queryParameters: {
     'api_key': Environment.MOVIEDB_KEY,
     'language': 'es-MX'
   }));
