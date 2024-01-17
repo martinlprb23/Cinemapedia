@@ -1,6 +1,8 @@
+import 'dart:math';
+
 import 'package:cinemapedia/data/repositories/movie_repository_impl.dart';
 import 'package:cinemapedia/domain/datasources/movies_datasource.dart';
-import 'package:cinemapedia/domain/entities/movie.dart';
+import 'package:cinemapedia/domain/entities/entities.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -45,6 +47,46 @@ void main() {
       expect(nowPlayingResponse, isNotNull);
       expect(nowPlayingResponse, isA<List<Movie>>());
       expect(nowPlayingResponse.length, equals(1));
+    });
+
+    test('getPopular', () async {
+      when(moviesDatasource.getPopular(page: 1))
+          .thenAnswer((realInvocation) => Future.value([movieTest]));
+
+      final popularResponse = await movieRepoImpl.getPopular(page: 1);
+
+      expect(popularResponse, isNotNull);
+      expect(popularResponse, isA<List<Movie>>());
+      expect(popularResponse.length, equals(1));
+    });
+
+    test('getTopRated', () async {
+      when(moviesDatasource.getTopRated(page: 1))
+          .thenAnswer((realInvocation) => Future.value([movieTest]));
+
+      final topRatedResponse = await movieRepoImpl.getTopRated(page: 1);
+
+      expect(topRatedResponse, isNotNull);
+      expect(topRatedResponse, isNotEmpty);
+      expect(topRatedResponse, isA<List<Movie>>());
+    });
+
+    test('getYoutubeVideosById', () async {
+      final video = Video(
+          id: "123",
+          name: "Movie video",
+          youtubeKey: "yt_key",
+          publishedAt: DateTime.now());
+
+      const movieId = 123;
+      when(moviesDatasource.getYoutubeVideosById(movieId))
+          .thenAnswer((realInvocation) => Future.value([video]));
+
+      final ytVideoResponse = await movieRepoImpl.getYoutubeVideosById(movieId);
+
+      expect(ytVideoResponse, isNotNull);
+      expect(ytVideoResponse.length, equals(1));
+      expect(ytVideoResponse[0].name, equals("Movie video"));
     });
 
     test('getMovieById', () async {
