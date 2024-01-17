@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cinemapedia/data/repositories/movie_repository_impl.dart';
 import 'package:cinemapedia/domain/datasources/movies_datasource.dart';
 import 'package:cinemapedia/domain/entities/entities.dart';
